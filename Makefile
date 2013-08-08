@@ -143,6 +143,7 @@ F_CPU=2000000
 #F_CPU=16000000
 
 # Configuration support
+SRCDIR = .
 -include config.mk
 
 # Is this an xmega?
@@ -235,7 +236,7 @@ COMMON_FLAGS += -fno-jump-tables
 endif
 
 COMMON_FLAGS += -Wall
-COMMON_FLAGS += -Wa,-adhlns=$(basename $<).lst
+#COMMON_FLAGS += -Wa,-adhlns=$(basename $<).lst
 COMMON_FLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
 #COMMON_FLAGS += ...
 
@@ -258,7 +259,7 @@ CXXFLAGS = $(COMMON_FLAGS)
 #             for use in COFF files, additional information about filenames
 #             and function names needs to be present in the assembler source
 #             files -- see avr-libc docs [FIXME: not yet described there]
-ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
+#ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
 
 
 
@@ -878,31 +879,31 @@ extcoff: $(TARGET).elf
 
 
 # Compile: create object files from C source files.
-%.o : %.c
+%.o : $(SRCDIR)/%.c
 	@echo
 	@echo $(MSG_COMPILING) $<
 	$(CC) -c $(ALL_CFLAGS) $< -o $@
 
 
 # Compile: create object files from C++ source files.
-%.o : %.cpp
+%.o : $(SRCDIR)/%.cpp
 	@echo
 	@echo $(MSG_COMPILING) $<
 	$(CXX) -c $(ALL_CXXFLAGS) $< -o $@
 
 
 # Compile: create assembler files from C source files.
-%.s : %.c
+%.s : $(SRCDIR)/%.c
 	$(CC) -S $(ALL_CFLAGS) $< -o $@
 
 
 # Compile: create assembler files from C++ source files.
-%.s : %.cpp
+%.s : $(SRCDIR)/%.cpp
 	$(CXX) -S $(ALL_CXXFLAGS) $< -o $@
 
 
 # Assemble: create object files from assembler source files.
-%.o : %.S
+%.o : $(SRCDIR)/%.S
 	@echo
 	@echo $(MSG_ASSEMBLING) $<
 	$(CC) -c $(ALL_ASFLAGS) $< -o $@
