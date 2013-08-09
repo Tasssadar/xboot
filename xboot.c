@@ -316,8 +316,15 @@ int main(void)
         // Triggers that are checked once, regardless of
         // whether or not USE_ENTER_DELAY is selected
         // --------------------------------------------------
-        
-        
+
+        // Enter bootloader after SW reset on XMega chips
+#if defined(__AVR_XMEGA__) && defined(USE_ENTER_SWRST)
+        if(RST.STATUS & RST_SRF_bm)
+        {
+                 in_bootloader = 1;
+                 RST.STATUS &= ~(RST_SRF_bm);
+        }
+#endif
         
         // --------------------------------------------------
         // End one time trigger section

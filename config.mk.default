@@ -46,6 +46,9 @@ ENABLE_API_FIRMWARE_UPDATE = no
 # Really only applicable to XMEGA 256a3 rev A and B devices
 USE_AVR1008_EEPROM = no
 
+# Enter bootloader after SW reset on XMega chips
+USE_ENTER_SWRST = no
+
 USE_ENTER_DELAY       = no
 ENTER_BLINK_COUNT     = 3
 ENTER_BLINK_WAIT      = 30000
