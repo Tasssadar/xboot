@@ -54,7 +54,7 @@ USE_ENTER_PIN = no
 ENTER_PORT_NAME       = C
 ENTER_PIN             = 0
 ENTER_PIN_STATE       = 0
-ENTER_PIN_PUEN        = 1
+ENTER_PIN_PUEN        = 0
 
 
 USE_ENTER_UART = no
@@ -119,4 +119,4 @@ ATTACH_LED_INV                = 1
 # LED
 LED_PORT_NAME         = A
 LED_PIN               = 0
-LED_INV               = 1
+LED_INV               = 0
