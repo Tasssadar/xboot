@@ -541,7 +541,7 @@ endif
 ifneq ($(filter $(MCU_S), x64a1 x64a3 x64a4 x64d3 x64d4 x64a3u x64a4u x64b1 x64b3),)
   BOOT_SECTION_START		=0x010000
 endif
-ifneq ($(filter $(MCU_S), x128a1 x128a3 x128a4 x128d3 x128d4 x128a3u x128a4u x128b1 x128b3),)
+ifneq ($(filter $(MCU_S), x128a1 x128a3 x128a4 x128d3 x128d4 x128a3u x128a4u x128b1 x128b3 x64a1u x128a1u),)
   BOOT_SECTION_START		=0x020000
 endif
 ifneq ($(filter $(MCU_S), x192a1 x192a3 x192d3 x192a3u),)
@@ -549,6 +549,9 @@ ifneq ($(filter $(MCU_S), x192a1 x192a3 x192d3 x192a3u),)
 endif
 ifneq ($(filter $(MCU_S), x256a1 x256a3 x256a3b x256d3 x256a3u x256a3bu),)
   BOOT_SECTION_START		=0x040000
+endif
+ifneq ($(filter $(MCU_S), x384c3),)
+  BOOT_SECTION_START		=0x060000
 endif
 # atmega
 MCU_S = $(subst atmega,m,$(MCU))
